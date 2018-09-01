@@ -5,7 +5,7 @@
     "   Documentation: type ?owmr or https://crazycapivara.github.io/owmr/\n",
     "   Issues, notes and bleeding edge: https://github.com/crazycapivara/owmr/\n\n",
     "   it is recommended that you store your api key in an environment variable\n",
-    "   called OWM_API_KEY"
+    "   called OWM_API_KEY."
   )
 }
 

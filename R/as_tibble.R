@@ -7,7 +7,7 @@
 #' @rdname as_tibble
 #' @export
 #'
-current_as_tibble <- function(resp) {
+current_as_tibble <- function(resp, simplify = TRUE, ...) {
   resp$weather <- resp$weather %>%
     tibble::as_tibble() %>%
     use_underscore()
@@ -40,7 +40,7 @@ current_as_tibble <- function(resp) {
 #' @rdname as_tibble
 #' @export
 #'
-forecast_as_tibble <- function(resp) {
+forecast_as_tibble <- function(resp, simplify = TRUE, ...) {
   if ("list" %in% names(resp) &&
       inherits(resp$list, "data.frame")) {
     names(resp)[which(names(resp) == "list")] <- "data"
@@ -68,11 +68,11 @@ forecast_as_tibble <- function(resp) {
 #' @rdname as_tibble
 #' @export
 #'
-as_tibble <- function(resp) {
+as_tibble <- function(resp, simplify = TRUE, ...) {
   if (attr(resp, "timeframe") == "current") {
     out <- resp %>% current_as_tibble()
   } else if (attr(resp, "timeframe") == "forecast") {
-    out <- resp %>% current_as_tibble()
+    out <- resp %>% forecast_as_tibble()
   } else {
     stop("Only current and forecast responses can be parsed into tibbles.")
   }
