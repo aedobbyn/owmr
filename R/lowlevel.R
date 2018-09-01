@@ -13,6 +13,23 @@ assign_loc <- function(query, loc) {
   query
 }
 
+extra_cols <- c("id", "icon")
+
+unselect_cols <- function(tbl) {
+  if (any(extra_cols %in% names(tbl))) {
+    tbl[, -which(names(tbl) %in% extra_cols)]
+  } else {
+    tbl
+  }
+}
+
+nix_mains <- function(tbl) {
+  names(tbl) <-
+    gsub("main_", "", names(tbl))
+
+  tbl
+}
+
 # TODO: document in order to export
 # @export
 owmr_parse <- function(response) {

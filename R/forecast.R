@@ -15,5 +15,8 @@
 #' }
 get_forecast <- function(city = NA, ...) {
   get <- owmr_wrap_get("forecast")
-  get(city, ...) %>% owmr_parse()
+  out <- get(city, ...) %>% owmr_parse()
+
+  attributes(out) <- list(timeframe = "forecast")
+  out
 }
